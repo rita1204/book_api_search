@@ -23,10 +23,13 @@ class BooksController < ApplicationController
 
   def search
     if params[:title]
-      @items = RakutenWebService::Books::Book.search(title: params[:title])
+      @items = RWS::Books::Book.search(:title => params[:title])
     elsif params[:author]
-      @items = RakutenWebService::Books::Book.search(author: params[:author])
+      @items = RWS::Books::Book.search(:author => params[:author])
     end
+
+   # This returns Enumerable object
+ # You can refer to values as well as Hash.
   end
 
   # POST /books
