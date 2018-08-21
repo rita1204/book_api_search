@@ -1,30 +1,33 @@
 <h1>BOOK SEARCH</h1>
-<%= form_tag :books_search,method: :get do  %>
+<%= form_tag :root,method: :get do  %>
   <%= label_tag :title,'タイトル' %>
   <%= text_field_tag 'title', params[:title] %>
   <%= submit_tag "検索" %>
 <% end %>
-<%= form_tag :books_search, method: :get do  %>
+<%= form_tag :root, method: :get do  %>
   <%= label_tag :author,'著者' %>
   <%= text_field_tag 'author', params[:author] %>
   <%= submit_tag "検索" %>
 <% end %>
 
-<table>
-  <thead>
-    <tr>タイトル</tr>
-    <tr>著者</tr>
-    <tr>画像</tr>
-  </thead>
-  <tbody>
-    <% if @item.present? %>
-      <% @items.each do |item| %>
-        <tr>
-          <td><%= link_to item.title, "#{item['itemUrl']}" %></td>
-          <td><%= item.author %></td>
-          <td><%= image_tag item["smallImageUrl"] %> %></td>
-        </tr>
-      <% end %>
+
+<% if @items %>
+  <table>
+    <thead>
+      <tr>
+        <th>タイトル</th>
+        <th>著者名</th>
+        <th>画像</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @items.each do |item| %>
+      <tr>
+        <td><%= link_to item.title, "#{item['itemUrl']}" %></td>
+        <td><%= item.author %></td>
+        <td><%= image_tag item["smallImageUrl"] %></td>
+      </tr>
     <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+<% end %>

@@ -22,6 +22,7 @@ class BooksController < ApplicationController
   end
 
   def search
+
     if params[:title]
       @items = RWS::Books::Book.search(:title => params[:title])
     elsif params[:author]
