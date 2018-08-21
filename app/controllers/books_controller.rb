@@ -21,6 +21,14 @@ class BooksController < ApplicationController
   def edit
   end
 
+  def search
+    if params[:title]
+      @items = RakutenWebService::Books::Book.search(title: params[:title])
+    elsif params[:author]
+      @items = RakutenWebService::Books::Book.search(author: params[:author])
+    end
+  end
+
   # POST /books
   # POST /books.json
   def create
